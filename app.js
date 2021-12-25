@@ -1,9 +1,11 @@
 // var
+
 let time =0;
 let timerId =0;
 let timerOut= true;
 
 // element
+
 const start = document.querySelector("#start");
 const reset = document.querySelector("#reset");
 const timer = document.querySelector("#time-display");
@@ -15,9 +17,11 @@ time++;
 timerCount();
 
 },1000);
+
 };
 
-const timerCount = {} => {
+const timerCount = () => {
+
 const min = Math.floor(time/60);
 const sec = time %60;
 
@@ -28,10 +32,22 @@ timer.innerHTML =  `${min}:0${sec}`;
 timer.innerHTML =  `${min}:${sec}`;
 }
 };
-const stopClock = () => {};
+
+const stopClock = () => {
+clearInterval(timerId);
+};
 
 start.addEventListener("click", function() {
-initClock ();  
+if (timerOut) {
+ initClock ();   
+}
+ 
 });
 
-reset.addEventListener("click", function() {});
+reset.addEventListener("click", function() {
+stopClock();
+timerOut= true;
+time = 0;
+timerCount();
+
+});
